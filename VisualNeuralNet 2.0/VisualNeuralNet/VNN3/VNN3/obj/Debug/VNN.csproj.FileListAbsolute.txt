@@ -1,0 +1,17 @@
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\obj\Debug\VNN.VisualForm.FVisual.resources
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\obj\Debug\VNN.Properties.Resources.resources
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\obj\Debug\VNN.csproj.GenerateResource.Cache
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\bin\Debug\VNN.dll.config
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\bin\Debug\VNN.dll
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\bin\Debug\VNN.pdb
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\obj\Debug\VNN.dll
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\obj\Debug\VNN.pdb
+D:\VS Projects\Диплом\VisualNeuronet\VNN3\VNN3\VNN3\obj\Debug\VNN.csprojResolveAssemblyReference.cache
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\bin\Debug\VNN.dll.config
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\bin\Debug\VNN.dll
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\bin\Debug\VNN.pdb
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\obj\Debug\VNN.VisualForm.FVisual.resources
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\obj\Debug\VNN.Properties.Resources.resources
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\obj\Debug\VNN.csproj.GenerateResource.Cache
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\obj\Debug\VNN.dll
+D:\VS Projects\Диплом\replayssopov\VNN3\VNN3\VNN3\obj\Debug\VNN.pdb

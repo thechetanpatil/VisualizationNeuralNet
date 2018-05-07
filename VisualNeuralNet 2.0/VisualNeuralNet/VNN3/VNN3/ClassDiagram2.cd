@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VNN.NCamera.Camera">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICEQgAABAgAAAAAAEACMCQAAQAIEAQAAQADqEAEECAA=</HashCode>
+      <FileName>Classes\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.Mouse.CMouse">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkUABAIFAAAAAEBAngAAIAABAAAAEBBEAAAYwACACIA=</HashCode>
+      <FileName>Classes\CMouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.Classes.NeuralNet.Layer">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAACCAAAEAoAAAAAIAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Classes\NeuralNet\Layer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.Classes.NeuralNet.NeuralNet" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAgIAQAAAAAgAAAAAACAAAAAACAAAAAAAEAAAgAAA=</HashCode>
+      <FileName>Classes\NeuralNet\NeuralNet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNN.Classes.NeuralNet.Neuron">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAIAAAAAAggBCAIQAAAAAAAAAQACAAEAAwAAAAgA=</HashCode>
+      <FileName>Classes\NeuralNet\Neuron.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.Classes.NeuralNet.Synapse">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAQDMAAAgUCAAAAhAgAAAAAAACAAAAAwABABAA=</HashCode>
+      <FileName>Classes\NeuralNet\Synapse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.NScene.Scene">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQAABAAoAAAgQAAAAgAAAAVAAAAAAAQBRAACAAAAE=</HashCode>
+      <FileName>Classes\Scene\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.NScene.SceneSpace" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Scene\SceneSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNN.VisualForm.FVisual">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="VNN.VisualForm.FVisual.ShowSaveFileDialogInvoker" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FVisual.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BZQABAgAACAAGAAAAAKAAIACAAAAIAAAAAAEAAAAZAY=</HashCode>
+      <FileName>FVisual.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.Properties.Resources" Collapsed="true">
+    <Position X="7.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.Properties.Settings" Collapsed="true">
+    <Position X="9.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNN.VisualNeuralNet">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAAAAAAAAAAAAAAoAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualNeuralNet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="VNN.Structures.NeuronsLayer">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Structures\Structures.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="VNN.Structures.Vector3D">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>Structures\Structures.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="VNN.NSceneObject.ISceneObject">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Scene\ISceneObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
