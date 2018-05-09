@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace VNN.Structures
 {
-    public delegate void MSave(string FileName);
-    public struct NeuronsLayer
-    {
-        public double[] neurons;
-    
-    }
-        [Serializable]
+    [Serializable]
     public struct Vector3D
     {
         public float x, y, z;
@@ -22,5 +14,5 @@ namespace VNN.Structures
             vec3.z = vec1.z - vec2.z;
             return vec3;
         }
-    };
+    }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VNN.Structures;
 using Tao.OpenGl;
 using Tao.FreeGlut;
+using VNN.Structures;
 
 namespace VNN.Classes.NeuralNet
 {

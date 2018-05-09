@@ -1,122 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using VNN.Structures;
 
 namespace VNN.Classes.NeuralNet
 {
     [Serializable]
-    class Layer 
+    internal class Layer
     {
-        List<Neuron> massNeurons;
-        private string layid;
-        public double maxlen=0;
-         public  double minlen=0;
-        float positionOnAxisZ;
-        public Layer(NeuronsLayer lay, float positionOnAxisZ,string layid,ref int startid)
-        {
 
-             this.layid = layid;
-            double length;
-            this.positionOnAxisZ = positionOnAxisZ;
-            massNeurons = new List<Neuron>();
-            float positionOnAxisX = 0;
-            double laycount = lay.neurons.Count();
-            double centeritem = Convert.ToDouble(laycount / 2);
-            length = laycount * 2 + laycount;
-            float lengthitem = (float)length / (float)laycount;
+        public List<Neuron> MassNeurons { get; set; }
+
+        public Layer(NeuronsLayer inputLayer, float positionOnAxisZ, string layid, ref int startid)
+        {
+            double laycount = inputLayer.Neurons.Length;
+            double length = laycount * 2 + laycount;
+            var lengthitem = (float)length / (float)laycount;
             double min = 0 - length / 2;
             double max = 0 + (length / 2);
-            int neuronid=1;
+            int neuronid = 1;
+            float positionOnAxisX = 0;
+            MassNeurons = new List<Neuron>();
             if (laycount == 1.0)
             {
-                positionOnAxisX =0;
-                Neuron n = new Neuron(lay.neurons[0], positionOnAxisZ, positionOnAxisX + (float)lay.neurons[0],layid+'.'+neuronid,startid);
+                positionOnAxisX = 0;
+                var n = new Neuron(inputLayer.Neurons[0], positionOnAxisZ, positionOnAxisX +
+                    (float)inputLayer.Neurons[0], layid + '.' + neuronid, startid);
 
-                massNeurons.Add(n);
+                MassNeurons.Add(n);
             }
-            else { 
-
-            float lastpos = 0;
-
-            for (int i = 0; i < laycount; i++)
+            else
             {
-
-                if (i == 0)
+                for (int i = 0; i < laycount; i++)
                 {
-                    positionOnAxisX = (float)min;
-                    lastpos = positionOnAxisX;
-                }
-                else
-                {
-                    if (i == (laycount - 1))
+                    float lastpos;
+                    if (i == 0)
                     {
-                        positionOnAxisX = (float)max;
+                        positionOnAxisX = (float)min;
                         lastpos = positionOnAxisX;
                     }
                     else
                     {
-                        lastpos = positionOnAxisX;
+                        if (i == (laycount - 1))
+                        {
+                            positionOnAxisX = (float)max;
+                            lastpos = positionOnAxisX;
+                        }
+                        else
+                        {
+                            lastpos = positionOnAxisX;
+                        }
+
+
                     }
-
-
+                    positionOnAxisX += lengthitem + 1;
+                    var n = new Neuron(inputLayer.Neurons[i], positionOnAxisZ, lastpos, layid + '.' + neuronid, startid);
+                    neuronid++;
+                    startid++;
+                    MassNeurons.Add(n);
                 }
-                positionOnAxisX += lengthitem+1;
-                Neuron n = new Neuron(lay.neurons[i], positionOnAxisZ, lastpos,layid + '.' + neuronid,startid);
-                neuronid++;
-                startid++;
-                massNeurons.Add(n);
-            }
             }
         }
-        internal List<Neuron> MassNeurons
-        {
-            get { return massNeurons; }
-            set { massNeurons = value; }
-        }
+
         public void Draw()
         {
-            foreach (Neuron n in massNeurons)
+            foreach (var n in MassNeurons)
             {
                 n.Draw();
             }
         }
         public void DefaultColor()
         {
-            foreach(Neuron n in massNeurons){
+            foreach (var n in MassNeurons)
+            {
                 n.DefaultColor();
             }
         }
-        public  void SetColorSynapse(Synapse syn)
-        {
-             if (syn.Height > maxlen)
-                    {
-                        maxlen = syn.Height;
-                      
-                    }
-                    else
-                    {
-                        if (syn.Height < minlen)
-                            minlen = syn.Height;
-                    }
-
-                    float col = (float)((syn.Height - minlen) / (float)(maxlen - minlen));
-                    if (col > 0.5)
-                    {
-                        syn.ColorB = col;
-                        syn.ColorG = 1 - col;
-                        syn.ColorR = syn.ColorG - syn.ColorB;
-                    }
-
-                    else
-                    {
-                        syn.ColorB = col;
-                        syn.ColorG = 1 - col; ;
-                        syn.ColorR = syn.ColorB - syn.ColorG;
-                    }
-        }
-
 
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tao.OpenGl;
-using VNN.NScene;
-using VNN.NSceneObject;
 using VNN.Structures;
 
 namespace VNN.Classes.Scene
@@ -194,12 +192,12 @@ namespace VNN.Classes.Scene
 
             if (net != null && net.Selectobj(_selectBuff[3], xPos, yPos))
             {
-                net.CurrentID = Convert.ToInt32(_selectBuff[3]);
+                net.CurrentId = Convert.ToInt32(_selectBuff[3]);
                 h = true;
             }
             else
             {
-                if (net != null) net.CurrentID = -1;
+                if (net != null) net.CurrentId = -1;
             }
 
 

@@ -73,9 +73,9 @@
             this.checkBoxRTi.AutoSize = true;
             this.checkBoxRTi.Location = new System.Drawing.Point(219, 301);
             this.checkBoxRTi.Name = "checkBoxRTi";
-            this.checkBoxRTi.Size = new System.Drawing.Size(108, 17);
+            this.checkBoxRTi.Size = new System.Drawing.Size(114, 17);
             this.checkBoxRTi.TabIndex = 55;
-            this.checkBoxRTi.Text = "RealTimeImagine";
+            this.checkBoxRTi.Text = "Real Time Imagine";
             this.checkBoxRTi.UseVisualStyleBackColor = true;
             this.checkBoxRTi.Visible = false;
             // 
@@ -152,48 +152,48 @@
             // cbIsVisualization
             // 
             this.cbIsVisualization.AutoSize = true;
-            this.cbIsVisualization.Location = new System.Drawing.Point(99, 167);
+            this.cbIsVisualization.Location = new System.Drawing.Point(92, 175);
             this.cbIsVisualization.Name = "cbIsVisualization";
-            this.cbIsVisualization.Size = new System.Drawing.Size(98, 17);
+            this.cbIsVisualization.Size = new System.Drawing.Size(84, 17);
             this.cbIsVisualization.TabIndex = 56;
-            this.cbIsVisualization.Text = "Визуализация";
+            this.cbIsVisualization.Text = "Visualization";
             this.cbIsVisualization.UseVisualStyleBackColor = true;
             this.cbIsVisualization.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // PropertiesNet_button
             // 
             this.PropertiesNet_button.Enabled = false;
-            this.PropertiesNet_button.Location = new System.Drawing.Point(115, 12);
+            this.PropertiesNet_button.Location = new System.Drawing.Point(17, 37);
             this.PropertiesNet_button.Name = "PropertiesNet_button";
-            this.PropertiesNet_button.Size = new System.Drawing.Size(75, 37);
+            this.PropertiesNet_button.Size = new System.Drawing.Size(170, 24);
             this.PropertiesNet_button.TabIndex = 40;
-            this.PropertiesNet_button.Text = "Настройки Н/C";
+            this.PropertiesNet_button.Text = "Neural net configuration";
             this.PropertiesNet_button.UseVisualStyleBackColor = true;
             this.PropertiesNet_button.Click += new System.EventHandler(this.PropertiesNet_button_Click);
             // 
             // StandardF
             // 
-            this.StandardF.Location = new System.Drawing.Point(12, 12);
+            this.StandardF.Location = new System.Drawing.Point(15, 7);
             this.StandardF.Name = "StandardF";
-            this.StandardF.Size = new System.Drawing.Size(75, 35);
+            this.StandardF.Size = new System.Drawing.Size(172, 24);
             this.StandardF.TabIndex = 55;
-            this.StandardF.Text = "Функция";
+            this.StandardF.Text = "Function";
             this.StandardF.UseVisualStyleBackColor = true;
             this.StandardF.Click += new System.EventHandler(this.StandardF_Click);
             // 
             // BOpenVNN
             // 
-            this.BOpenVNN.Location = new System.Drawing.Point(19, 196);
+            this.BOpenVNN.Location = new System.Drawing.Point(12, 202);
             this.BOpenVNN.Name = "BOpenVNN";
             this.BOpenVNN.Size = new System.Drawing.Size(178, 38);
             this.BOpenVNN.TabIndex = 54;
-            this.BOpenVNN.Text = "Открыть визуализацию из файла";
+            this.BOpenVNN.Text = "Open visualization from file";
             this.BOpenVNN.UseVisualStyleBackColor = true;
             this.BOpenVNN.Click += new System.EventHandler(this.BOpenVNN_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(21, 167);
+            this.textBox2.Location = new System.Drawing.Point(14, 173);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(69, 20);
             this.textBox2.TabIndex = 53;
@@ -202,18 +202,18 @@
             // Start_button
             // 
             this.Start_button.Enabled = false;
-            this.Start_button.Location = new System.Drawing.Point(19, 251);
+            this.Start_button.Location = new System.Drawing.Point(12, 257);
             this.Start_button.Name = "Start_button";
             this.Start_button.Size = new System.Drawing.Size(178, 39);
             this.Start_button.TabIndex = 52;
-            this.Start_button.Text = "Старт";
+            this.Start_button.Text = "Start learning";
             this.Start_button.UseVisualStyleBackColor = true;
             this.Start_button.Click += new System.EventHandler(this.Start_button_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 146);
+            this.label7.Location = new System.Drawing.Point(14, 152);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 13);
             this.label7.TabIndex = 49;
@@ -223,7 +223,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 103);
+            this.label6.Location = new System.Drawing.Point(12, 109);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 48;
@@ -231,14 +231,14 @@
             // 
             // CurrentItBox
             // 
-            this.CurrentItBox.Location = new System.Drawing.Point(20, 120);
+            this.CurrentItBox.Location = new System.Drawing.Point(13, 126);
             this.CurrentItBox.Name = "CurrentItBox";
             this.CurrentItBox.Size = new System.Drawing.Size(69, 20);
             this.CurrentItBox.TabIndex = 47;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(128, 80);
+            this.textBox3.Location = new System.Drawing.Point(121, 86);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(69, 20);
             this.textBox3.TabIndex = 46;
@@ -247,7 +247,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(125, 62);
+            this.label5.Location = new System.Drawing.Point(118, 68);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 45;
@@ -256,7 +256,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(125, 101);
+            this.label4.Location = new System.Drawing.Point(118, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 13);
             this.label4.TabIndex = 44;
@@ -265,7 +265,7 @@
             // LearnErBox
             // 
             this.LearnErBox.Enabled = false;
-            this.LearnErBox.Location = new System.Drawing.Point(128, 120);
+            this.LearnErBox.Location = new System.Drawing.Point(121, 126);
             this.LearnErBox.Name = "LearnErBox";
             this.LearnErBox.Size = new System.Drawing.Size(69, 20);
             this.LearnErBox.TabIndex = 42;
@@ -273,7 +273,7 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(20, 80);
+            this.textBox1.Location = new System.Drawing.Point(13, 86);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(73, 20);
             this.textBox1.TabIndex = 41;
@@ -282,7 +282,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 62);
+            this.label3.Location = new System.Drawing.Point(10, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 43;
@@ -297,7 +297,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RS";
+            this.Text = "Neural Net Demonstration";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();

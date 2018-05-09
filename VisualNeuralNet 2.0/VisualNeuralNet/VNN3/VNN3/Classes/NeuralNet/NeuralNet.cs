@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VNN.NSceneObject;
 using Tao.OpenGl;
-using VNN.Structures;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using VNN.Classes.Scene;
+using VNN.Structures;
+
 namespace VNN.Classes.NeuralNet
 {
     [Serializable]
@@ -14,23 +15,20 @@ namespace VNN.Classes.NeuralNet
     {
         List<Layer> massLayers;
         List<Synapse> massSynapses;
-        private int currentID;
+        private int _currentId;
 
-        public int CurrentID
+        public int CurrentId
         {
-            get { return currentID; }
-            set
-            {
-                currentID = value;
-            }
+            get => _currentId;
+            set => _currentId = value;
         }
         public NeuralNet()
         {
 
         }
-        public NeuralNet(List<NeuronsLayer> Layers)
+        public NeuralNet(List<NeuronsLayer> layers)
         {
-            CurrentID = -1;
+            CurrentId = -1;
             massLayers = new List<Layer>();
             massSynapses = new List<Synapse>();
 
@@ -40,15 +38,14 @@ namespace VNN.Classes.NeuralNet
             float posz = sizegrid / 2;
             float min = posz;
             float max = 0 - posz;
-            float itemlength = sizegrid / (Layers.Count + 1);
-            NeuronsLayer nlinput = new NeuronsLayer();
-            nlinput.neurons = new double[] { 0.5 };
+            float itemlength = sizegrid / (layers.Count + 1);
+            var nlinput = new NeuronsLayer {Neurons = new[] {0.5}};
             Layer input = new Layer(nlinput, min,"Input",ref id);
             input.MassNeurons[0].Color = 1f;
             massLayers.Add(input);
             posz = posz - itemlength;
             id++;
-            foreach (NeuronsLayer nl in Layers)
+            foreach (var nl in layers)
             {
 
                 Layer l = new Layer(nl, posz, layid.ToString(),ref id);
@@ -57,9 +54,8 @@ namespace VNN.Classes.NeuralNet
                 layid++;
             }
 
-            NeuronsLayer nloutput = new NeuronsLayer();
-            nloutput.neurons = new double[] { 0.5 };
-            Layer output = new Layer(nloutput, max, "Output", ref id);
+            var nloutput = new NeuronsLayer {Neurons = new[] {0.5}};
+            var output = new Layer(nloutput, max, "Output", ref id);
             output.MassNeurons[0].Color = 0.1f;
             massLayers.Add(output);
             for (int i = 0; i < massLayers.Count - 1; i++)
@@ -112,7 +108,7 @@ namespace VNN.Classes.NeuralNet
                 else
                 {
                     syn.ColorB = col;
-                    syn.ColorG = 1 - col; ;
+                    syn.ColorG = 1 - col;
                     syn.ColorR = syn.ColorB - syn.ColorG;
                 }
 
@@ -124,7 +120,7 @@ namespace VNN.Classes.NeuralNet
             int indexselected = -1;
             int lc = 0;
             int selectlayer=-1;
-            if (Convert.ToInt32(id) != CurrentID)
+            if (Convert.ToInt32(id) != CurrentId)
             {
 
                 foreach (Layer mass in massLayers)
@@ -137,7 +133,7 @@ namespace VNN.Classes.NeuralNet
                         if (id == (uint)mass.MassNeurons[i - 1].id)
                         {
                             selectlayer = lc;
-                            currentID = Convert.ToInt32(id);
+                            _currentId = Convert.ToInt32(id);
                             indexselected = i - 1;
 
                         }
@@ -159,8 +155,8 @@ namespace VNN.Classes.NeuralNet
             Gl.glInitNames();
 
 
-            float[] color = new float[4] { 1, 0, 0, 1 }; // красный цвет
-            float[] shininess = new float[1] { 90 };
+            float[] color = { 1, 0, 0, 1 }; // красный цвет
+            float[] shininess = { 90 };
             Gl.glEnable(Gl.GL_COLOR_MATERIAL);
             Gl.glMaterialfv(Gl.GL_FRONT_AND_BACK, Gl.GL_DIFFUSE, color); // цвет
             Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_SPECULAR, color); // отраженный свет
@@ -173,19 +169,19 @@ namespace VNN.Classes.NeuralNet
 
 
         }
-        public void Save(string FileName)
+        public void Save(string fileName)
         {
             BinaryFormatter binFormat = new BinaryFormatter();
             // Сохранить объект в локальном файле.
-            using (Stream fStream = new FileStream(FileName,
+            using (Stream fStream = new FileStream(fileName,
                FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 binFormat.Serialize(fStream, this);
             }
         }
-        public static NeuralNet Load(string FileName)
+        public static NeuralNet Load(string fileName)
         {
-            FileStream stream = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
             NeuralNet network = Load(stream);
             stream.Close();
 

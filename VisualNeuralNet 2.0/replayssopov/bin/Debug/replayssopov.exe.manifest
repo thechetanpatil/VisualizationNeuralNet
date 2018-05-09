@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fMwArNu4ea5zFsnjEcIGBUOuZXmtm7DuFXJlzXvq2lM=</dsig:DigestValue>
+        <dsig:DigestValue>hkVg2daGGp3s8S6MxG6QYzIEJmyeWboIPO/ffLGWQww=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VNN.dll" size="32768">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VNN.dll" size="32256">
       <assemblyIdentity name="VNN" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>37xKqALZr2jNKmVKdwWJ8fmJ3TmacWGhy1omr91ghfQ=</dsig:DigestValue>
+        <dsig:DigestValue>POeyL04WRRUKY2bryu2WaJVJYhs/20d+is7IwshLnVY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
