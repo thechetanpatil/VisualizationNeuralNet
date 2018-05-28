@@ -36,13 +36,13 @@ D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replay
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\replayssopov.application
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\replayssopov.exe
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\replayssopov.pdb
-D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\VNN.dll
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\Tao.Platform.Windows.dll
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\Tao.OpenGl.dll
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\Tao.FreeGlut.dll
-D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\VNN.pdb
-D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\VNN.dll.config
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\obj\Debug\replayssopov.TrustInfo.xml
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\obj\Debug\replayssopov.exe.manifest
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\obj\Debug\replayssopov.application
 D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\obj\Debug\replayssopov.csproj.CopyComplete
+D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\VisualizationNeuralNet.dll
+D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\VisualizationNeuralNet.pdb
+D:\Programming\Projects\GitHub\VisualizationNeuralNet\VisualNeuralNet 2.0\replayssopov\bin\Debug\VisualizationNeuralNet.dll.config

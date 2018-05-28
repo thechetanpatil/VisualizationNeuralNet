@@ -50,7 +50,7 @@ namespace replayssopov
         private double _error;
         private string _formatError;
         private int _lenOfData;
-        public VisualizationNeuralNet VisualizationNeuralNet;
+        public VNN.VisualizationNeuralNet VisualizationNeuralNet;
         #endregion
         #region delegate
         private delegate void SetTextCallback(System.Windows.Forms.Control control, string text);
@@ -101,7 +101,7 @@ namespace replayssopov
 
                 label4.Text = "FinalError";
                 label7.Visible = false;
-                LearnErBox.Enabled= true;
+                LearnErBox.Enabled = true;
 
                 _indicatorOfUsingData = 0;
 
@@ -215,24 +215,24 @@ namespace replayssopov
                     }
                     else
                         if (propdlg.Indicator_Second)
-                        {
+                    {
 
-                            _newCountThread = new Thread(new ThreadStart(SearchSolution_1));
-                            _newCountThread.Start();
-                        }
-                        else
+                        _newCountThread = new Thread(new ThreadStart(SearchSolution_1));
+                        _newCountThread.Start();
+                    }
+                    else
                             if (propdlg.Indicator_Third)
-                            {
-                                _newCountThread = new Thread(new ThreadStart(SearchSolution_2));
-                                _newCountThread.Start();
-                            }
-                            else
+                    {
+                        _newCountThread = new Thread(new ThreadStart(SearchSolution_2));
+                        _newCountThread.Start();
+                    }
+                    else
                                 if (_indicatorOfUsingData == 1)
-                                {
-                                    chart1.Visible = true;
-                                    _newCountThread = new Thread(new ThreadStart(SearchSolution_Data));
-                                    _newCountThread.Start();
-                                }
+                    {
+                        chart1.Visible = true;
+                        _newCountThread = new Thread(new ThreadStart(SearchSolution_Data));
+                        _newCountThread.Start();
+                    }
 
                 }
                 else
@@ -938,9 +938,9 @@ namespace replayssopov
         private void ShowNeuralNet()
         {
             if (cbIsVisualization.Checked != true) return;
-            
+
             Layer[] custom = _network.GetLayers;
-            List<NeuronsLayer> neuronsLayers = new List<NeuronsLayer>();
+            var neuronsLayers = new List<NeuronsLayer>();
             //перевод вес.коэф. нейроннов в необходимую структуру NeuronsLayer для создания объекта "VisualizationNeuralNet"
             for (var i = 0; i < custom.Count() - 1; i++)
             {
@@ -949,16 +949,14 @@ namespace replayssopov
                 {
                     mass[j] = custom[i][j].Output;
                 }
-                NeuronsLayer nl = new NeuronsLayer {Neurons = mass};
+                var nl = new NeuronsLayer { Neurons = mass };
                 neuronsLayers.Add(nl);
             }
             //запускаем в потоке
-            var thr = new Thread(delegate() { StartNewVisualization(neuronsLayers); });
-            thr.SetApartmentState(ApartmentState.STA);
-            thr.Start();
+            var thread = new Thread(delegate () { StartNewVisualization(neuronsLayers); });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
-
-   
 
         private void StartNewVisualization(List<NeuronsLayer> neuronsLayers)//запуск новой визуализации
         {
@@ -971,33 +969,21 @@ namespace replayssopov
         }
         private void StartVisualizationFromFile(string fileName)//запуск визуализации  из файла
         {
-            if (VisualizationNeuralNet == null)
-                VisualizationNeuralNet = new VisualizationNeuralNet();
-
-            VisualizationNeuralNet.Load(fileName);
-            VisualizationNeuralNet.ShowNeuralNet();
+            //var neuralNetFromFile = new VNN(fileName);
+            //neuralNetFromFile.ShowNeuralNet();
         }
         private void BOpenVNN_Click(object sender, EventArgs e)
         {
-                OpenFileDialog dlg = new OpenFileDialog();
-                dlg.DefaultExt = "*.vnn";
-                dlg.Filter = "VNN Files | *.vnn";
-                dlg.Title = "Открытие нейронной сети ";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                Thread thr = new Thread(delegate() { StartVisualizationFromFile(dlg.FileName); });
-                thr.SetApartmentState(ApartmentState.STA);
-                thr.Start();
-            }
+            var dlg = new OpenFileDialog();
+            dlg.DefaultExt = "*.vnn";
+            dlg.Filter = @"VNN Files | *.vnn";
+            dlg.Title = @"Открытие нейронной сети ";
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            var thread = new Thread(delegate () { StartVisualizationFromFile(dlg.FileName); });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
-
-   
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-       
 
     }
 }

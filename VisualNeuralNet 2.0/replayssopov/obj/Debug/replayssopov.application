@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="replayssopov.exe.manifest" size="8083">
+    <dependentAssembly dependencyType="install" codebase="replayssopov.exe.manifest" size="8121">
       <assemblyIdentity name="replayssopov.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>N6xIQtAZ7KUtSHG4+b9mwey4RVoxXScK1KizZWGubGU=</dsig:DigestValue>
+        <dsig:DigestValue>Z//gnJqg02S9lJpu23+FDqeUc058CJ6Ir2uw8NYBTcg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

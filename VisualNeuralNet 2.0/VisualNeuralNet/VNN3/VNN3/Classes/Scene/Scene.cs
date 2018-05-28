@@ -1,43 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Tao.OpenGl;
+using VNN.Interfaces;
 using VNN.Structures;
 
 namespace VNN.Classes.Scene
 {
-    public class Scene
+    public class Scene 
     {
         private readonly Camera _camera;
-        public VisualForm MainForm;
-        private readonly List<ISceneObject> _sceneObjects;
+        public IMainView MainView;
+        private List<ISceneObject> _sceneObjects;
         private const uint BufferLength = 64;
-        uint[] _selectBuff;//буфер для выбора
-        public int IndexNn;
-
+        private uint[] _selectBuff; //буфер для выбора
 
         public Scene(List<NeuronsLayer> customLayers)
         {
-            MainForm = new VisualForm(this);
             _camera = new Camera();
-            _sceneObjects = new List<ISceneObject>();
-            ISceneObject scspace = new SceneSpace();
-            _sceneObjects.Add(scspace);
-            ISceneObject neuralnet = new NeuralNet.NeuralNet(customLayers);
-            _sceneObjects.Add(neuralnet);
-            IndexNn = _sceneObjects.Count - 1;
-            _camera.Look();
-            SetupScene(MainForm.GetViewPortValues());
+            ConfigurationSceneObjects(
+                new List<ISceneObject> { new SceneSpace(), new NeuralNetModels.NeuralNet(customLayers) });
         }
         public Scene()
         {
-            MainForm = new VisualForm(this);
-            _sceneObjects = new List<ISceneObject>();
-            ISceneObject scspace = new SceneSpace();
-            _sceneObjects.Add(scspace);
-            IndexNn = _sceneObjects.Count - 1;
-            _camera.Look();
-            SetupScene(MainForm.GetViewPortValues());
+            _camera = new Camera();
+            ConfigurationSceneObjects(new List<ISceneObject> { new SceneSpace() });
         }
+
+        public bool Showing => ((MainView) MainView).Visible;
+
         public void AddSceneObject(ISceneObject obj)
         {
             _sceneObjects.Add(obj);
@@ -46,15 +37,14 @@ namespace VNN.Classes.Scene
         {
 
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
-            //Glu.gluOrtho2D(0.0, (double)viewport.Width, (double)viewport.Height, 0.0);
             Gl.glLoadIdentity();
             Gl.glColor3i(255, 0, 0);
-            _camera.Look(); //Обновляем взгляд камеры
-            foreach (ISceneObject obj in _sceneObjects)
-            {
+            _camera.Look(); //обновляем взгляд камеры
+            foreach (var obj in _sceneObjects)
                 obj.Draw();
-            }
-            MainForm.TaoControl.Invalidate();
+ 
+            MainView.UpdateView();
+
         }
         public void Render()
         {
@@ -121,40 +111,21 @@ namespace VNN.Classes.Scene
         }
         public void SaveNeuralNet(string fileName)
         {
-
-            foreach (ISceneObject so in _sceneObjects)
+            foreach (var sceneObject in _sceneObjects)
             {
-                if (so.GetType().ToString().Equals("VNN.Classes.NeuralNet.NeuralNet"))
-                {
-                    NeuralNet.NeuralNet g = (NeuralNet.NeuralNet)so;
-                    g.Save(fileName);
-                    break;
-                }
+                if (!sceneObject.GetType().ToString().Equals("VNN.Classes.NeuralNet.NeuralNet")) continue;
+                var g = (NeuralNetModels.NeuralNet)sceneObject;
+                g.Save(fileName);
+                break;
             }
         }
-        public void LoadNeuralNet(string fileName)
-        {
-
-            foreach (ISceneObject so in _sceneObjects)
-            {
-                if (so.GetType().ToString().Equals("VNN.Classes.NeuralNet.NeuralNet"))
-                {
-                    _sceneObjects.Remove(so);
-                    break;
-                }
-            }
-            ISceneObject neuralnet2 = NeuralNet.NeuralNet.Load(fileName);
-            _sceneObjects.Add(neuralnet2);
-            IndexNn = _sceneObjects.Count - 1;
-        }
-
-        public bool ProcessSelection(int xPos, int yPos)
+        public bool ProcessSelection(int positionAxisX, int positionAxisY)
         {
             // Space for selection buffer
             _selectBuff = new uint[BufferLength];
 
             // Hit counter and viewport storage
-            int[] viewport = new int[4];
+            var viewport = new int[4];
 
             // Setup selection buffer
             Gl.glSelectBuffer(64, _selectBuff);
@@ -170,10 +141,10 @@ namespace VNN.Classes.Scene
             Gl.glRenderMode(Gl.GL_SELECT);
 
             // Establish new clipping volume to be unit cube around
-            // mouse cursor point (xPos, yPos) and extending two pixels
+            // mouse cursor point (positionAxisX, yPos) and extending two pixels
             // in the vertical and horizontal direction
             Gl.glLoadIdentity();
-            Glu.gluPickMatrix(xPos, viewport[3] - yPos, 2, 2, viewport);
+            Glu.gluPickMatrix(positionAxisX, viewport[3] - positionAxisY, 2, 2, viewport);
 
             // Apply perspective matrix 
             var fAspect = viewport[2] / (float)viewport[3];
@@ -184,16 +155,15 @@ namespace VNN.Classes.Scene
 
             // Collect the hits
             Gl.glRenderMode(Gl.GL_RENDER);
-            NeuralNet.NeuralNet net = _sceneObjects[IndexNn] as NeuralNet.NeuralNet;
-            bool h = false;
-
+            var net =(NeuralNetModels.NeuralNet) 
+                _sceneObjects.FirstOrDefault(s => s.GetType().Name == nameof(NeuralNetModels.NeuralNet));
 
             // If a single hit occurred, display the info.
-
-            if (net != null && net.Selectobj(_selectBuff[3], xPos, yPos))
+            var isSelected = false;
+            if (net != null && net.Selectobj(Convert.ToInt32(_selectBuff[3]), positionAxisX, positionAxisY))
             {
                 net.CurrentId = Convert.ToInt32(_selectBuff[3]);
-                h = true;
+                isSelected = true;
             }
             else
             {
@@ -207,9 +177,8 @@ namespace VNN.Classes.Scene
 
             // Go back to modelview for normal rendering
             Gl.glMatrixMode(Gl.GL_MODELVIEW);
-            return h;
+            return isSelected;
         }
-
         private void ReDraw()
         {
             // Clear the window with current clearing color
@@ -218,24 +187,34 @@ namespace VNN.Classes.Scene
             // Save the matrix state and do the rotations
             Gl.glMatrixMode(Gl.GL_MODELVIEW);
             Gl.glPushMatrix();
-            _camera.Look(); //Обновляем взгляд камеры
+            _camera.Look(); 
             Gl.glPopMatrix();
 
-            foreach (ISceneObject obj in _sceneObjects)
-            {
-                obj.Draw();
-            }
+            foreach (var sceneObject in _sceneObjects)
+                sceneObject.Draw();
 
             Gl.glPopMatrix();
-            MainForm.TaoControl.Invalidate();
+            MainView.UpdateView();
         }
 
 
-
-        public List<ISceneObject> GetMass()
+        private void ConfigurationSceneObjects(List<ISceneObject> sceneObjects)
         {
-            return _sceneObjects;
+            MainView = new MainView(this);
+            _sceneObjects = sceneObjects;
+
+            _camera.Look();
+            SetupScene(MainView.GetViewPortValues());
         }
 
+        public void Show()
+        {
+            MainView.ShowView();
+        }
+
+        public int[] GetViewPort()
+        {
+           return MainView.GetViewPortValues();
+        }
     }
 }

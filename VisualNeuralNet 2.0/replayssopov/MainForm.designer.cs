@@ -158,7 +158,6 @@
             this.cbIsVisualization.TabIndex = 56;
             this.cbIsVisualization.Text = "Visualization";
             this.cbIsVisualization.UseVisualStyleBackColor = true;
-            this.cbIsVisualization.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // PropertiesNet_button
             // 

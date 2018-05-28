@@ -3,9 +3,9 @@ using Tao.OpenGl;
 
 namespace VNN.Classes.Scene
 {
-    class SceneSpace:ISceneObject
+    internal class SceneSpace : ISceneObject
     {
- 
+
         public void Draw()//отрисовка пространства, в котором находятся объекты
         {
             float[] matrixColorOx = { 1, 0, 1, 1 };
@@ -19,7 +19,7 @@ namespace VNN.Classes.Scene
             Gl.glVertex3d(0, 2, 0);
             Gl.glEnd();
         }
-        private void DrawGrid(int x, double quad_size)
+        private static void DrawGrid(int x, double quadSize)
         {
             float[] matrixColorOx = { 1, 0, 0, 1 };
             float[] matrixColorOy = { 0, 1, 0, 1 };
@@ -28,7 +28,7 @@ namespace VNN.Classes.Scene
             //x - количество или длина сетки, quad_size - размер клетки
             Gl.glPushMatrix(); //Рисуем оси координат, цвет объявлен в самом начале
             Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, matrixColorOx);
-            Gl.glTranslated((-x * 2) / 2, 0, 0);
+            Gl.glTranslated(-x * 2 / 2, 0, 0);
             Gl.glRotated(90, 0, 1, 0);
             Glut.glutSolidCylinder(0.02, x * 2, 12, 12);
             Gl.glPopMatrix();
@@ -50,23 +50,24 @@ namespace VNN.Classes.Scene
             Gl.glPopMatrix();
             Gl.glMaterialfv(Gl.GL_FRONT, Gl.GL_AMBIENT_AND_DIFFUSE, matrixColorOt);
             Gl.glBegin(Gl.GL_LINES);
+            DrawGridAlongAxises(x, quadSize);
+        }
 
-
-
+        private static void DrawGridAlongAxises(int x, double quadSize)
+        {
             // Рисуем сетку 1х1 вдоль осей
             for (double i = -x; i <= x; i += 1)
             {
                 Gl.glBegin(Gl.GL_LINES);
                 // Ось Х
-                Gl.glVertex3d(-x * quad_size, 0, i * quad_size);
-                Gl.glVertex3d(x * quad_size, 0, i * quad_size);
+                Gl.glVertex3d(-x * quadSize, 0, i * quadSize);
+                Gl.glVertex3d(x * quadSize, 0, i * quadSize);
 
                 // Ось Z
-                Gl.glVertex3d(i * quad_size, 0, -x * quad_size);
-                Gl.glVertex3d(i * quad_size, 0, x * quad_size);
+                Gl.glVertex3d(i * quadSize, 0, -x * quadSize);
+                Gl.glVertex3d(i * quadSize, 0, x * quadSize);
                 Gl.glEnd();
             }
         }
-
     }
 }

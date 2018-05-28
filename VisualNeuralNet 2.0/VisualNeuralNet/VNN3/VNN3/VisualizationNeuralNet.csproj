@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VNN</RootNamespace>
-    <AssemblyName>VNN</AssemblyName>
+    <AssemblyName>VisualizationNeuralNet</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -61,27 +61,30 @@
   <ItemGroup>
     <Compile Include="Classes\Camera.cs" />
     <Compile Include="Classes\Mouse.cs" />
-    <Compile Include="Classes\NeuralNet\Layer.cs" />
-    <Compile Include="Classes\NeuralNet\NeuralNet.cs" />
-    <Compile Include="Classes\NeuralNet\Neuron.cs" />
-    <Compile Include="Classes\NeuralNet\Synapse.cs" />
-    <Compile Include="Classes\NeuralNet\GLText.cs" />
+    <Compile Include="Classes\Extensions\DoubleExtension.cs" />
+    <Compile Include="Classes\NeuralNetModels\Layer.cs" />
+    <Compile Include="Classes\NeuralNetModels\NeuralNet.cs" />
+    <Compile Include="Classes\NeuralNetModels\Neuron.cs" />
+    <Compile Include="Classes\NeuralNetModels\Synapse.cs" />
+    <Compile Include="Classes\NeuralNetModels\GLText.cs" />
+    <Compile Include="Interfaces\IMainView.cs" />
     <Compile Include="Classes\Scene\Scene.cs" />
     <Compile Include="Classes\Scene\ISceneObject.cs" />
     <Compile Include="Classes\Scene\SceneSpace.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Interfaces\IDraw.cs" />
     <Compile Include="Structures\Vector3D.cs" />
-    <Compile Include="VisualForm.cs">
+    <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VisualForm.Designer.cs">
-      <DependentUpon>VisualForm.cs</DependentUpon>
+    <Compile Include="MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="Structures\NeuronsLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualizationNeuralNet.cs" />
-    <EmbeddedResource Include="VisualForm.resx">
-      <DependentUpon>VisualForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,7 +96,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

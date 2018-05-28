@@ -2,6 +2,6 @@
 {
     public interface ISceneObject
     {
-         void Draw();
+        void Draw();
     }
 }

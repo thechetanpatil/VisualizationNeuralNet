@@ -5,8 +5,7 @@ using VNN.Structures;
 
 namespace VNN.Classes
 {
-
-    class Camera
+    internal class Camera
     {
         #region Declaration
         #region Fields Vectors
@@ -15,66 +14,13 @@ namespace VNN.Classes
         private Vector3D _up;     // Вектор верхнего направления
         private Vector3D _strafe; // Вектор для стрейфа (движения влево и вправо) камеры
         #endregion
-        private bool _cameraMove;
-        private bool _cameraRotate;
-        float _rotCamX;
+
+        private float _rotateCameraAxisX;
+        public bool CameraRotate { get; set; }
+
+        public bool CameraMove { get; set; }
         #endregion
 
-        public bool CameraRotate
-        {
-            get => _cameraRotate;
-            set => _cameraRotate = value;
-        }
-        public bool CameraMove
-        {
-            get => _cameraMove;
-            set => _cameraMove = value;
-        }
-        public void ActionCamera()
-        {
-            _cameraRotate = Mouse.Button == MouseButtons.Left;
-            _cameraMove = Mouse.Button == MouseButtons.Middle;
-
-            if (_cameraRotate || _cameraMove)
-            {
-                SelectAction();
-            }
-        }
-        public void SelectAction()
-        {
-            if (Mouse.FreezeCam != true) { 
-            if (Mouse.Mdown && _cameraRotate) //Если нажата левая кнопка мыши
-            {
-                Mouse._viewPort.Cursor = Cursors.SizeAll; //меняем указатель
-                Rotate_Position(Mouse.XNewUnNormalize - Mouse.XCurrentUnNormalize, 0, 1, 0); //крутим камеру
-                _rotCamX = _rotCamX + (Mouse.YNewUnNormalize - Mouse.YCurrentUnNormalize);
-                if ((_rotCamX > -40) && (_rotCamX < 40))
-                    UpDown(((float)(Mouse.YNewUnNormalize - Mouse.YCurrentUnNormalize)) / 1);
-                Mouse.XCurrentUnNormalize=Mouse.XNewUnNormalize;
-                Mouse.YCurrentUnNormalize = Mouse.YNewUnNormalize;
-            }
-            else
-            {
-                if (Mouse.Mmove && _cameraMove && Mouse.Mdown)
-                {
-                    Mouse._viewPort.Cursor = Cursors.SizeAll;
-
-                    Move_Camera((float)(Mouse.YNewUnNormalize - Mouse.YCurrentUnNormalize) / 50);
-                    Strafe(-((float)(Mouse.XNewUnNormalize - Mouse.XCurrentUnNormalize) / 50));
-                    Mouse.XCurrentUnNormalize = Mouse.XNewUnNormalize;
-                    Mouse.YCurrentUnNormalize = Mouse.YNewUnNormalize;
-                }
-                else
-                {
-                    Mouse._viewPort.Cursor = Cursors.Default;//возвращаем курсор
-                }
-            }
-            }
-        }
-
-  
-
-        #region Constructor
         public Camera()
         {
             _position.x = 5; // Позиция камеры
@@ -87,10 +33,50 @@ namespace VNN.Classes
             _up.y = 1; //
             _up.z = 0; //
         }
-        #endregion
+      
+        public void ActionCamera()
+        {
+            CameraRotate = Mouse.Button == MouseButtons.Left;
+            CameraMove = Mouse.Button == MouseButtons.Middle;
+
+            if (CameraRotate || CameraMove)
+                SelectAction();
+        }
+        public void SelectAction()
+        {
+            if (Mouse.FreezeCam) return;
+
+            if (Mouse.IsMouseDown && CameraRotate) //Если нажата левая кнопка мыши
+            {
+                Mouse.ViewPort.Cursor = Cursors.SizeAll; //меняем указатель
+                Rotate_Position(Mouse.XNewUnNormalize - Mouse.XCurrentUnNormalize, 0, 1, 0); //крутим камеру
+                _rotateCameraAxisX = _rotateCameraAxisX + (Mouse.YNewUnNormalize - Mouse.YCurrentUnNormalize);
+                if ((_rotateCameraAxisX > -40) && (_rotateCameraAxisX < 40))
+                    UpDown(((float)(Mouse.YNewUnNormalize - Mouse.YCurrentUnNormalize)) / 1);
+                Mouse.XCurrentUnNormalize = Mouse.XNewUnNormalize;
+                Mouse.YCurrentUnNormalize = Mouse.YNewUnNormalize;
+            }
+            else
+            {
+                if (Mouse.IsMouseMove && CameraMove && Mouse.IsMouseDown)
+                {
+                    Mouse.ViewPort.Cursor = Cursors.SizeAll;
+
+                    Move_Camera((float)(Mouse.YNewUnNormalize - Mouse.YCurrentUnNormalize) / 50);
+                    Strafe(-((float)(Mouse.XNewUnNormalize - Mouse.XCurrentUnNormalize) / 50));
+                    Mouse.XCurrentUnNormalize = Mouse.XNewUnNormalize;
+                    Mouse.YCurrentUnNormalize = Mouse.YNewUnNormalize;
+                }
+                else
+                {
+                    Mouse.ViewPort.Cursor = Cursors.Default;//возвращаем курсор
+                }
+            }
+        }
+
         #region Methods
 
-        private Vector3D Cross(Vector3D vV1, Vector3D vV2, Vector3D vVector2)
+        private static Vector3D Cross(Vector3D vV1, Vector3D vV2, Vector3D vVector2)
         {
             Vector3D vNormal;
             Vector3D vVector1;
@@ -110,26 +96,26 @@ namespace VNN.Classes
             // Значение Z = (V1.x * V2.y) - (V1.y * V2.x)
             vNormal.z = ((vVector1.x * vVector2.y) - (vVector1.y * vVector2.x));
 
-            
+
             return vNormal;
         }
-        private float Magnitude(Vector3D vNormal)
+        private static float Magnitude(Vector3D vNormal)
         {
             // Это даст нам величину нашей нормали, 
-         
+
 
             return (float)Math.Sqrt((vNormal.x * vNormal.x) +
                     (vNormal.y * vNormal.y) +
                     (vNormal.z * vNormal.z));
         }
-        private Vector3D Normalize(Vector3D vVector)
+        private static Vector3D Normalize(Vector3D vVector)
         {
-         
+
 
             // Вычислим величину нормали
             float magnitude = Magnitude(vVector);
 
-          
+
             vVector.x = vVector.x / magnitude;
             vVector.y = vVector.y / magnitude;
             vVector.z = vVector.z / magnitude;
@@ -230,6 +216,9 @@ namespace VNN.Classes
         {
             _position.y += speed;
         }
+        /// <summary>
+        /// Refresh the view of the camera
+        /// </summary>
         public void Look()
         {
             Glu.gluLookAt(_position.x, _position.y, _position.z, // Ранее упомянутая команда 
@@ -237,41 +226,38 @@ namespace VNN.Classes
                           _up.x, _up.y, _up.z);
         }
         #region Getters
-        public double GetPosX() // Возвращает позицию камеры по Х
+        public double GetPositionAxisX() // Возвращает позицию камеры по Х
         {
             return _position.x;
         }
 
-        public double GetPosY() // Возвращает позицию камеры по Y
+        public double GetPositionAxisY() // Возвращает позицию камеры по Y
         {
             return _position.y;
         }
 
-        public double GetPosZ() // Возвращает позицию камеры по Z
+        public double GetPositionAxisZ() // Возвращает позицию камеры по Z
         {
             return _position.z;
         }
 
-        public double GetViewX() // Возвращает позицию взгляда по Х
+        public double GetViewAxisX() // Возвращает позицию взгляда по Х
         {
             return _view.x;
         }
 
-        public double GetViewY() // Возвращает позицию взгляда по Y
+        public double GetViewAxisY() // Возвращает позицию взгляда по Y
         {
             return _view.y;
         }
 
-        public double GetViewZ() // Возвращает позицию взгляда по Z
+        public double GetViewAxisZ() // Возвращает позицию взгляда по Z
         {
             return _view.z;
         }
         #endregion
 
         #endregion
-
-        ///////////////
-
     }
 
 

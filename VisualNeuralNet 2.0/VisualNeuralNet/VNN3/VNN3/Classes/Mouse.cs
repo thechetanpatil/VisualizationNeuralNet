@@ -15,25 +15,19 @@ namespace VNN.Classes
         public static int YNewUnNormalize { get; private set; }
         private static int _xCurrent;
         private static int _yCurrent;
-        private static int _xNew;
-        private static int _yNew;
+
         #endregion
         #region State/состояния
-        private static bool _mdown;
-        private static bool _mmove;
-        private static bool _mup;
-        private static bool _freezecam;
+
         #endregion
         #region _viewPort
 
-        public static SimpleOpenGlControl _viewPort { get; private set; }
+        public static SimpleOpenGlControl ViewPort { get; private set; }
 
         #endregion
         #region Other
         public static MouseButtons Button;
         private static float CenterX { get; set; }
-
-        private static float _centerY;
 
         #endregion
         #endregion
@@ -55,7 +49,7 @@ namespace VNN.Classes
             set
             {
                 YCurrentUnNormalize = value;
-                _yCurrent = Convert.ToInt32((_viewPort.Height - value) - Centery);
+                _yCurrent = Convert.ToInt32((ViewPort.Height - value) - Centery);
             }
         }
         public static int XNew
@@ -69,28 +63,19 @@ namespace VNN.Classes
         }
         public static int YNew
         {
-            get { return YNew1; }
+            get => YNew1;
             set
             {
                 YNewUnNormalize = value;
-                YNew1 = Convert.ToInt32((_viewPort.Height - value) - Centery);
+                YNew1 = Convert.ToInt32(ViewPort.Height - value - Centery);
             }
         }
-        public static bool Mup
-        {
-            get { return _mup; }
-            set { _mup = value; }
-        }
-        public static bool Mdown
-        {
-            get { return _mdown; }
-            set { _mdown = value; }
-        }
-        public static bool Mmove
-        {
-            get { return _mmove; }
-            set { _mmove = value; }
-        }
+        public static bool IsMouseUp { get; set; }
+
+        public static bool IsMouseDown { get; set; }
+
+        public static bool IsMouseMove { get; set; }
+
         #endregion
         #region Events
         public static void MouseClick(object sender, MouseEventArgs e)
@@ -102,17 +87,20 @@ namespace VNN.Classes
         {
             XCurrent = e.X;
             YCurrent = e.Y;
-            Mdown = true;
-            if (e.Button == MouseButtons.Left)
-                Button = MouseButtons.Left; //Если нажата левая кнопка мыши
-            if (e.Button == MouseButtons.Middle)
+            IsMouseDown = true;
+            switch (e.Button)
             {
-                Button = MouseButtons.Middle;
+                case MouseButtons.Left:
+                    Button = MouseButtons.Left; //Если нажата левая кнопка мыши
+                    break;
+                case MouseButtons.Middle:
+                    Button = MouseButtons.Middle;
+                    break;
             }
         }
         public static void MouseMove(object sender, MouseEventArgs e)
         {
-            Mmove = true;
+            IsMouseMove = true;
             XNew = e.X;
             YNew = e.Y;
 
@@ -121,37 +109,28 @@ namespace VNN.Classes
         public static void MouseUp(object sender, MouseEventArgs e)
         {
 
-            Mup = true;
-            Mdown = false;
-            Mmove = false;
+            IsMouseUp = true;
+            IsMouseDown = false;
+            IsMouseMove = false;
         }
         #endregion
         public static void SetViewport(SimpleOpenGlControl viewport)
         {
-            _viewPort = viewport;
-            _viewPort.MouseClick += MouseClick;
-            _viewPort.MouseDown += MouseDown;
-            _viewPort.MouseUp += MouseUp;
-            _viewPort.MouseMove += MouseMove;
-            CenterX = _viewPort.Width / 2;
-            Centery = _viewPort.Height / 2;
+            ViewPort = viewport;
+            ViewPort.MouseClick += MouseClick;
+            ViewPort.MouseDown += MouseDown;
+            ViewPort.MouseUp += MouseUp;
+            ViewPort.MouseMove += MouseMove;
+            CenterX = (float)ViewPort.Width / 2;
+            Centery = (float)ViewPort.Height / 2;
         }
 
-        public static bool FreezeCam
-        {
+        public static bool FreezeCam { get; set; }
 
-            get
-            {
-                return _freezecam;
-            }
-            set
-            {
-                _freezecam = value;
-            }
-        }
+        public static float Centery { get; set; }
 
-        public static float Centery { get => _centerY; set => _centerY = value; }
-        public static int YNew1 { get => _yNew; set => _yNew = value; }
-        public static int XNew1 { get => _xNew; set => _xNew = value; }
+        public static int YNew1 { get; set; }
+
+        public static int XNew1 { get; set; }
     }
 }
