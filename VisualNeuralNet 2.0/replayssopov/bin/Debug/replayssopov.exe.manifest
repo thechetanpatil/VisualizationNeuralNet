@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Wf6jk+oOPwPLLos0SLKP2d7fUnd69qO5gsEVocc2VUg=</dsig:DigestValue>
+        <dsig:DigestValue>PXXdPcKgWqaFQDQXHdjImSjeHOxC5NgcIktsurYRqKM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VisualizationNeuralNet.dll" size="33280">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VisualizationNeuralNet.dll" size="32768">
       <assemblyIdentity name="VisualizationNeuralNet" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+QSmglwNtP9Q1iEbux2i8/PsyLdBTf03HZZJICSR3m4=</dsig:DigestValue>
+        <dsig:DigestValue>PEWk68TY4o1ViaGrnOuQ81JSWHFw7RPk9ie9j9t21wQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
